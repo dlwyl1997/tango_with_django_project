@@ -18,7 +18,6 @@ def index(request):
 
 
 def about(request):
-    # Spoiler: you don't need to pass a context dictionary here.
     return render(request, 'rango/about.html')
 
 
