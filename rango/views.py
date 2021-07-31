@@ -5,6 +5,7 @@ from rango.models import Page
 from rango.forms import CategoryForm
 from rango.forms import PageForm
 from django.urls import reverse
+from rango.forms import UserForm, UserProfileForm
 
 
 def index(request):
@@ -108,4 +109,3 @@ def register(request):
 
     return render(request, 'rango/register.html',
                   context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
-
