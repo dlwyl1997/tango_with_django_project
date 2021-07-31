@@ -7,6 +7,7 @@ from django.urls import reverse
 from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 
 def index(request):
@@ -19,10 +20,16 @@ def index(request):
     context_dict['pages'] = page_list
     context_dict['extra'] = 'From the model solution on GitHub'
 
+    request.session.set_test_cookie()
+
     return render(request, 'rango/index.html', context=context_dict)
 
 
 def about(request):
+    if request.session.test_cookie_worked():
+        print("Test Cookie Worked!")
+        request.session.delete_test_cookie()
+
     return render(request, 'rango/about.html')
 
 
@@ -150,3 +157,5 @@ def restricted(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('rango:index'))
+
+
